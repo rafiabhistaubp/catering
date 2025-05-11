@@ -9,6 +9,8 @@
     <!-- Menambahkan file CSS untuk layout umum -->
     <link rel="stylesheet" href="{{ asset('css/master.css') }}">
 
+    <!-- Menambahkan file CSS yang dikompilasi oleh Vite -->
+   
     <!-- File tambahan CSS untuk halaman tertentu -->
     @stack('styles')
 </head>
@@ -28,8 +30,6 @@
         </div>
     </div>
 
-    <!-- Menambahkan file JavaScript -->
-    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 
 </html>
