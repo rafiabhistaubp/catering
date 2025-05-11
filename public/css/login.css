@@ -1,0 +1,124 @@
+/* Warna latar belakang keseluruhan */
+body {
+    background-color: #c0d6a9;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Kontainer login utama */
+.login-page {
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Kartu login */
+.login-card {
+    width: 400px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    color: #333;
+}
+
+/* Judul utama (Halo Admin) */
+.login-card h2 {
+    color: #B4CD93;
+    font-weight: bold;
+    font-size: 32px;
+}
+
+/* Kotak dalam form login */
+.login-box {
+    border: 2px solid #2691d9;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #B4CD93;
+    color: white;
+}
+
+/* Judul login */
+.login-box h4 {
+    font-weight: bold;
+}
+
+/* Input grup */
+.input-group {
+    margin-bottom: 15px;
+}
+
+/* Form input */
+.form-control {
+    border: none;
+    border-bottom: 1px solid #ccc;
+    border-radius: 0;
+    background-color: transparent;
+    box-shadow: none;
+    color: #333;
+}
+
+/* Fokus input */
+.form-control:focus {
+    border-bottom: 1px solid #2691d9;
+    box-shadow: none;
+}
+
+/* Tombol login */
+.btn-login {
+    background-color: white;
+    color: #B4CD93;
+    width: 100%;
+    border-radius: 20px;
+    font-weight: bold;
+    border: 1px solid #B4CD93;
+    transition: 0.3s;
+}
+
+.btn-login:hover {
+    background-color: #B4CD93;
+    color: white;
+}
+
+/* Link lupa password */
+.forgot-link {
+    color: white;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.forgot-link:hover {
+    color: #e0e0e0;
+    text-decoration: underline;
+}
+
+/* Link bawah */
+.login-box a {
+    color: white;
+    text-decoration: underline;
+    font-weight: 500;
+}
+.input-group {
+    margin-bottom: 15px;
+    background-color: #eaf4dd; /* Warna latar belakang lembut */
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #B4CD93; /* Warna border hijau */
+}
+.form-control::placeholder {
+    color: white;
+    opacity: 1; /* Agar tidak transparan */
+}
+
+
+/* Responsive untuk mobile */
+@media (max-width: 576px) {
+    .login-card {
+        width: 100%;
+        margin: 10px;
+        padding: 15px;
+    }
+
+    .login-box {
+        padding: 15px;
+    }
+}
