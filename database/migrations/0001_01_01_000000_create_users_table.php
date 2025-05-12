@@ -17,12 +17,15 @@ return new class extends Migration
             $table->string('password');
             $table->enum('role', ['admin', 'koki', 'karyawan']);
             $table->string('nama_lengkap'); 
+            $table->enum('shift', ['1', '2', '3']);
+            $table->string('no_hp');
             $table->rememberToken();
             $table->timestamps();
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
-            $table->string('email')->primary();
+            $table->id();  // Adding an auto-incrementing ID
+            $table->string('email')->index();  // Adding index for email
             $table->string('token');
             $table->timestamp('created_at')->nullable();
         });
@@ -34,6 +37,7 @@ return new class extends Migration
             $table->text('user_agent')->nullable();
             $table->longText('payload');
             $table->integer('last_activity')->index();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
         });
     }
 

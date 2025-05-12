@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -22,25 +23,28 @@ class UserController extends Controller
     }
 
     // Menyimpan pengguna baru
-    public function store(Request $request)
+   public function store(Request $request)
     {
         $data = $request->validate([
             'username' => 'required|unique:users,username',
-            'password' => 'required|min:6',
             'nama_lengkap' => 'required|string|max:255',
             'role' => 'required|in:admin,koki,karyawan',
+            'no_hp' => 'required|numeric|digits_between:8,15',
+            'shift' => 'required|in:1,2,3',
         ]);
 
         User::create([
             'username' => Str::lower($data['username']),
-            'password' => bcrypt($data['password']),
             'nama_lengkap' => $data['nama_lengkap'],
             'role' => $data['role'],
+            'no_hp' => $data['no_hp'],
+            'password' => Hash::make($data['no_hp']), // no_hp juga jadi password
+            'shift' => $data['shift'],
+
         ]);
 
         return redirect()->route('user.index')->with('success', 'User berhasil ditambahkan.');
     }
-
     // Menampilkan form untuk mengedit pengguna
     public function edit($id)
     {
@@ -58,6 +62,7 @@ class UserController extends Controller
             'password' => 'nullable|min:6',
             'nama_lengkap' => 'required|string|max:255',
             'role' => 'required|in:admin,koki,karyawan',
+            'no_hp' => 'required|numeric|min:8', // Validasi no_hp sebagai angka
         ]);
 
         $user->update([
@@ -65,6 +70,7 @@ class UserController extends Controller
             'password' => $data['password'] ? bcrypt($data['password']) : $user->password,
             'nama_lengkap' => $data['nama_lengkap'],
             'role' => $data['role'],
+            'no_hp' => $data['no_hp'], // Simpan no_hp dalam format teks biasa
         ]);
 
         return redirect()->route('user.index')->with('success', 'User berhasil diperbarui.');

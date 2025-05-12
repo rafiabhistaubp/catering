@@ -4,7 +4,6 @@
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/user.css') }}">
-    
 @endpush
 
 @section('content')
@@ -51,39 +50,47 @@
         </div>
 
         <!-- Modal -->
-        <!-- Modal -->
-<div id="modal" class="modal">
-    <div class="modal-content">
-        <span class="close" id="closeModal">&times;</span>
-        <h2>Menambahkan Data Karyawan</h2>
-        <form action="{{ route('user.store') }}" method="POST">
-            @csrf
-            <label for="nama">Nama Karyawan</label>
-            <input type="text" id="nama" name="nama_lengkap" required placeholder="Nama Karyawan">
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeModal">&times;</span>
+                <h2>Menambahkan Data Karyawan</h2>
+                <form action="{{ route('user.store') }}" method="POST">
+                    @csrf
+                    <label for="nama">Nama Karyawan</label>
+                    <input type="text" id="nama" name="nama_lengkap" required placeholder="Nama Karyawan">
 
-            <label for="shift">Jam Kerja (Shift)</label>
-            <select id="shift" name="shift">
-                <option value="1">Shift 1</option>
-                <option value="2">Shift 2</option>
-                <option value="3">Shift 3</option>
-            </select>
+                    <label for="shift">Jam Kerja (Shift)</label>
+                    <select id="shift" name="shift">
+                        <option value="1">Shift 1</option>
+                        <option value="2">Shift 2</option>
+                        <option value="3">Shift 3</option>
+                    </select>
 
-            <label for="email">Email Karyawan</label>
-            <input type="email" id="email" name="username" required placeholder="Email Karyawan">
+                    <label for="email">Email Karyawan</label>
+                    <input type="email" id="email" name="username" required placeholder="Email Karyawan">
 
-            <label for="gender">Jenis Kelamin</label>
-            <select id="gender" name="gender">
-                <option value="laki-laki">Laki-laki</option>
-                <option value="perempuan">Perempuan</option>
-            </select>
+                    <label for="no_hp">No Hp</label>
+                    <input type="tel" id="no_hp" name="no_hp" required placeholder="No HP" pattern="[0-9]{8,15}">
 
-            <button type="submit">Tambah</button>
-        </form>
-    </div>
-</div>
+                    <label for="role">Role</label>
+                    <select id="role" name="role" required>
+                        <option value="admin">Admin</option>
+                        <option value="karyawan">Karyawan</option>
+                        <option value="koki">Koki</option>
+                    </select>
+                    <p class="text-muted small mt-2">🔒 Password default adalah sama dengan No HP</p>
 
+                    <button type="submit">Tambah</button>
+                </form>
+            </div>
         </div>
-    </div>
-    <script src="{{asset ('js/user.js') }}"></script>
 
+    </div>
+    @if (session('success'))
+    <div class="alert alert-success mt-2">
+        {{ session('success') }}
+    </div>
+@endif
+
+    <script src="{{ asset('js/user.js') }}"></script>
 @endsection
