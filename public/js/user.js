@@ -1,21 +1,35 @@
-// Get modal and buttons
-const modal = document.getElementById("modal");
-const openModalButton = document.getElementById("openModal");
-const closeModalButton = document.getElementById("closeModal");
+document.addEventListener("DOMContentLoaded", function () {
+    const modal = document.getElementById("modal");
+    const openModalButton = document.getElementById("openModal");
+    const closeModalButton = document.getElementById("closeModal");
 
-// Ensure the button triggers the modal to open
-openModalButton.onclick = function () {
-    modal.style.display = "flex";  // Open the modal
-}
+    // Buka modal jika ada query ?openModal=1
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('openModal') === '1') {
+        modal.style.display = "flex";
 
-// Ensure the close button works to hide the modal
-closeModalButton.onclick = function () {
-    modal.style.display = "none";  // Close the modal
-}
-
-// Close the modal if clicked outside the modal content area
-window.onclick = function (event) {
-    if (event.target == modal) {
-        modal.style.display = "none";  // Close the modal if the background is clicked
+        // Hapus query dari URL tanpa reload
+        window.history.replaceState({}, document.title, window.location.pathname);
     }
-}
+
+    // Klik tombol "+" → buka modal
+    if (openModalButton) {
+        openModalButton.onclick = function () {
+            modal.style.display = "flex";
+        }
+    }
+
+    // Klik tombol "×" → tutup modal
+    if (closeModalButton) {
+        closeModalButton.onclick = function () {
+            modal.style.display = "none";
+        }
+    }
+
+    // Klik area luar modal → tutup modal
+    window.onclick = function (event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    }
+});

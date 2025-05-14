@@ -6,16 +6,33 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+
 
 class UserController extends Controller
 {
     // Menampilkan semua pengguna
-    public function index()
+    public function index(Request $request) 
     {
-        $users = User::all();
+        $search = $request->get('search');
+        $search = trim($search);  // Menghapus spasi di awal dan akhir
+
+        // Mulai query dengan filter role karyawan
+        $query = User::where('role', 'karyawan');
+
+        // Hanya lakukan pencarian jika ada input yang valid
+        if (!empty($search)) {
+            $query->where(function ($query) use ($search) {
+                $query->where('nama_lengkap', 'like', '%'.$search.'%')
+                    ->orWhere('username', 'like', '%'.$search.'%');
+            });
+        }
+
+        // Ambil data dengan paginasi
+        $users = $query->paginate(10);
+
         return view('user.index', compact('users'));
     }
-
     // Menampilkan form untuk membuat pengguna baru
     public function create()
     {
@@ -23,9 +40,9 @@ class UserController extends Controller
     }
 
     // Menyimpan pengguna baru
-   public function store(Request $request)
+    public function store(Request $request)
     {
-        $data = $request->validate([
+        $validator = Validator::make($request->all(), [
             'username' => 'required|unique:users,username',
             'nama_lengkap' => 'required|string|max:255',
             'role' => 'required|in:admin,koki,karyawan',
@@ -33,18 +50,26 @@ class UserController extends Controller
             'shift' => 'required|in:1,2,3',
         ]);
 
-        User::create([
-            'username' => Str::lower($data['username']),
-            'nama_lengkap' => $data['nama_lengkap'],
-            'role' => $data['role'],
-            'no_hp' => $data['no_hp'],
-            'password' => Hash::make($data['no_hp']), // no_hp juga jadi password
-            'shift' => $data['shift'],
+        if ($validator->fails()) {
+            return redirect()->route('user.index', ['openModal' => 1])
+                ->withErrors($validator)
+                ->withInput();
+        }
 
+
+        User::create([
+            'username' => Str::lower($request->username),
+            'nama_lengkap' => $request->nama_lengkap,
+            'role' => $request->role,
+            'no_hp' => $request->no_hp,
+            'password' => Hash::make($request->no_hp),
+            'shift' => $request->shift,
         ]);
 
         return redirect()->route('user.index')->with('success', 'User berhasil ditambahkan.');
     }
+
+
     // Menampilkan form untuk mengedit pengguna
     public function edit($id)
     {
@@ -57,24 +82,24 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
 
-        $data = $request->validate([
-            'username' => 'required|unique:users,username,' . $id,
-            'password' => 'nullable|min:6',
+        $validatedData = $request->validate([
             'nama_lengkap' => 'required|string|max:255',
-            'role' => 'required|in:admin,koki,karyawan',
-            'no_hp' => 'required|numeric|min:8', // Validasi no_hp sebagai angka
+            'shift' => 'required|in:1,2,3',
+            'username' => 'required|email|max:255',
+            'no_hp' => 'required|numeric|min:8|max:15',
+            'role' => 'required|in:admin,karyawan,koki',
         ]);
 
-        $user->update([
-            'username' => Str::lower($data['username']),
-            'password' => $data['password'] ? bcrypt($data['password']) : $user->password,
-            'nama_lengkap' => $data['nama_lengkap'],
-            'role' => $data['role'],
-            'no_hp' => $data['no_hp'], // Simpan no_hp dalam format teks biasa
-        ]);
+        $user->update($validatedData);
 
-        return redirect()->route('user.index')->with('success', 'User berhasil diperbarui.');
+        // Jika request dilakukan dengan AJAX, kembalikan response JSON
+        if ($request->ajax()) {
+            return response()->json(['success' => true]);
+        }
+
+        return redirect()->route('user.index')->with('success', 'Data karyawan berhasil diperbarui.');
     }
+
 
     // Menghapus pengguna
     public function destroy($id)

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Data Karyawan')
+@section('title', 'Data Pesanan')
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/user.css') }}">
@@ -10,15 +10,14 @@
 <div class="main-content">
     <div class="table-section">
         <div class="header">
-            <h2>Data Karyawan</h2>
-            <h4>Monitor Data Karyawan</h4>
+            <h2>Pemesanan Makanan</h2>
 
             <!-- Form Pencarian -->
-            <form action="{{ route('user.index') }}" method="GET" class="search-form" onsubmit="return validateSearch()">
+            <form action="{{ route('pesan.index') }}" method="GET" class="search-form" onsubmit="return validateSearch()">
                 <input type="text" name="search" placeholder="Search" class="search" value="{{ request()->get('search') ?? '' }}">
                 <button type="submit" class="btn-search">Cari</button>
                 @if(request()->get('search') !== null && request()->get('search') !== '')
-                    <a href="{{ route('user.index') }}" class="btn-reset">Reset</a>
+                    <a href="{{ route('pesan.index') }}" class="btn-reset">Reset</a>
                 @endif
             </form>
 
@@ -30,27 +29,29 @@
             <div class="alert alert-success mt-2">{{ session('success') }}</div>
         @endif
 
-        <!-- Tabel Data Karyawan -->
+        <!-- Tabel Data Pesanan -->
         <table>
             <thead>
                 <tr>
-                    <th>Nama Karyawan</th>
+                    <th>Deskripsi Pesanan</th>
+                    <th>Tanggal Pesanan</th>
+                    <th>Untuk Tanggal</th>
+                    <th>Banyak Porsi</th>
                     <th>Shift</th>
-                    <th>Email</th>
-                    <th>Role</th>
                     <th>Opsi</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($users as $user)
+                @foreach($pesans as $pesan)
                 <tr>
-                    <td>{{ $user->nama_lengkap }}</td>
-                    <td>{{ $user->shift }}</td>
-                    <td>{{ $user->username }}</td>
-                    <td>{{ $user->role}}</td>
+                    <td>{{ $pesan->deskripsi }}</td>
+                    <td>{{ $pesan->tanggal_pesanan }}</td>
+                    <td>{{ $pesan->untuk_tanggal }}</td>
+                    <td>{{ $pesan->porsi }}</td>
+                    <td>{{ $pesan->shift }}</td>
                     <td>
-                        <a href="{{ route('user.edit', $user->id) }}" class="btn btn-edit">Edit</a>
-                        <form action="{{ route('user.destroy', $user->id) }}" method="POST" style="display:inline;">
+                        <a href="{{ route('pesan.edit', $pesan->id) }}" class="btn btn-edit">Edit</a>
+                        <form action="{{ route('pesan.destroy', $pesan->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-delete" onclick="return confirm('Are you sure?')">Hapus</button>
@@ -62,11 +63,11 @@
         </table>
 
         <!-- Pagination -->
-        {{ $users->links() }}
+        {{ $pesans->links() }}
     </div>
 
     <!-- Modal -->
-    @include('user.create')
+    @include('pesan.create')
 </div>
 @endsection
 
@@ -110,7 +111,7 @@
         const searchValue = document.querySelector('input[name="search"]').value.trim();
         if (searchValue === '') {
             // Jika search kosong, mencegah pengiriman form dan redirect ke URL tanpa query string
-            window.location.href = "{{ route('user.index') }}"; // Mengarahkan ke halaman tanpa query string
+            window.location.href = "{{ route('pesan.index') }}"; // Mengarahkan ke halaman tanpa query string
             return false;
         }
         return true; // Lanjutkan mengirim form jika ada input pencarian

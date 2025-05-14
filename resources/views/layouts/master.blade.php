@@ -8,6 +8,9 @@
 
     <!-- Menambahkan file CSS untuk layout umum -->
     <link rel="stylesheet" href="{{ asset('css/master.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+
 
     <!-- Menambahkan file CSS yang dikompilasi oleh Vite -->
    
@@ -31,5 +34,6 @@
     </div>
 
 </body>
+@stack('scripts')
 
 </html>

@@ -105,6 +105,19 @@ h4 {
 .btn-delete:hover {
     background-color: #c82333;
 }
+.btn-reset {
+    color: white;
+    background-color: red;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.btn-reset:hover {
+    background-color: darkred;
+}
 /* Modal background */
 .modal {
     display: none; /* tetap default hidden */

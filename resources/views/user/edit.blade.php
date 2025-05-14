@@ -1,21 +1,15 @@
-<!-- Modal Tambah Karyawan -->
+<!-- Modal Karyawan -->
 <div id="modal" class="modal" style="display: none;">
     <div class="modal-content">
         <span class="close" id="closeModal">&times;</span>
-        <h2>Menambahkan Data Karyawan</h2>
+        <h2 id="modal-title">Edit Data Karyawan</h2>
 
-        <form action="{{ route('user.store') }}" method="POST">
+        <!-- Form modal yang bisa digunakan untuk tambah atau edit -->
+        <form id="modal-form" method="POST" onsubmit="event.preventDefault(); editUser();">
             @csrf
+            @method('PUT') <!-- Default method untuk form tambah -->
 
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul class="mb-0">
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+            <input type="hidden" id="user_id" name="user_id">
 
             <label for="nama">Nama Karyawan</label>
             <input type="text" id="nama" name="nama_lengkap" required placeholder="Nama Karyawan" value="{{ old('nama_lengkap') }}">
@@ -44,9 +38,7 @@
 
             <p class="text-muted small mt-2">🔒 Password default adalah sama dengan No HP</p>
 
-            <button type="submit">Tambah</button>
+            <button type="submit" id="submit-button">Simpan</button>
         </form>
     </div>
 </div>
-
-

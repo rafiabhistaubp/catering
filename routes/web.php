@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\PesanController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -25,5 +26,6 @@ Route::post('/forgot-password', [ForgotPasswordController::class, 'reset'])->nam
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::get('user',[UserController::class, 'index']);
 Route::resource('user', UserController::class);
+
+Route::resource('pesan', PesanController::class);
