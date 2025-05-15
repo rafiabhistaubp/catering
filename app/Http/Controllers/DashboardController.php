@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dashboard;
+use App\Models\Pesan;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -12,7 +14,10 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard.index');
+        $users = User::where('role', 'karyawan')->get();
+        $jumlahKaryawan = User::where('role', 'karyawan')->count();
+        $jumlahPesanan = Pesan::sum('porsi');
+        return view('dashboard.index', compact('users', 'jumlahKaryawan', 'jumlahPesanan'));
     }
 
     /**

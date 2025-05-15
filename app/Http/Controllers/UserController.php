@@ -48,6 +48,7 @@ class UserController extends Controller
             'role' => 'required|in:admin,koki,karyawan',
             'no_hp' => 'required|numeric|digits_between:8,15',
             'shift' => 'required|in:1,2,3',
+            'jenis_kelamin' => 'required|in:perempuan,laki-laki',
         ]);
 
         if ($validator->fails()) {
@@ -64,6 +65,7 @@ class UserController extends Controller
             'no_hp' => $request->no_hp,
             'password' => Hash::make($request->no_hp),
             'shift' => $request->shift,
+            'jenis_kelamin' => $request->jenis_kelamin,
         ]);
 
         return redirect()->route('user.index')->with('success', 'User berhasil ditambahkan.');
@@ -88,6 +90,7 @@ class UserController extends Controller
             'username' => 'required|email|max:255',
             'no_hp' => 'required|numeric|min:8|max:15',
             'role' => 'required|in:admin,karyawan,koki',
+            'jenis_kelamin' => 'required|in:perempuan,laki-laki',
         ]);
 
         $user->update($validatedData);

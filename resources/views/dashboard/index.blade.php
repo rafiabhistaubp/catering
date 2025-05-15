@@ -13,11 +13,11 @@
             <!-- Kartu Informasi -->
             <div class="cards">
                 <div class="card">
-                    <span>30,000</span>
+                    <span>{{ number_format($jumlahKaryawan) }}</span>
                     Data Karyawan
                 </div>
                 <div class="card">
-                    <span>30,000</span>
+                    <span>{{ number_format($jumlahPesanan) }}</span>
                     Jumlah Pesanan Makanan Untuk Hari Ini
                 </div>
                 <div class="card">
@@ -31,35 +31,27 @@
                 <h2>All</h2>
                 <input type="text" placeholder="Search" class="search">
                 <table>
-                    <thead>
-                        <tr>
-                            <th>Nama Karyawan</th>
-                            <th>Shift</th>
-                            <th>Email</th>
-                            <th>Jenis Kelamin</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Mayla</td>
-                            <td>1</td>
-                            <td>Maylove@gmail.com</td>
-                            <td>Perempuan</td>
-                        </tr>
-                        <tr>
-                            <td>Bunga</td>
-                            <td>2</td>
-                            <td>Bungacilya@gmail.com</td>
-                            <td>Perempuan</td>
-                        </tr>
-                        <tr>
-                            <td>Asniya</td>
-                            <td>1</td>
-                            <td>Asniyatutik@gmail.com</td>
-                            <td>Laki-laki</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <thead>
+                <tr>
+                    <th>Nama Karyawan</th>
+                    <th>Shift</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>jenis Kelamin</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($users as $user)
+                <tr>
+                    <td>{{ $user->nama_lengkap }}</td>
+                    <td>{{ $user->shift }}</td>
+                    <td>{{ $user->username }}</td>
+                    <td>{{ $user->role}}</td>
+                    <td>{{ $user->jenis_kelamin}}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
             </div>
         </div>
 

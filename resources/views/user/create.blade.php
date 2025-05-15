@@ -42,6 +42,13 @@
                 <option value="koki" @selected(old('role') == 'koki')>Koki</option>
             </select>
 
+            <label for="jenis_kelamin">Jenis Kelamin</label>
+            <select id="jenis_kelamin" name="jenis_kelamin" required>
+                <option value="">Pilih Jenis Kelamin</option>
+                <option value="perempuan" @selected(old('jenis_kelamin') == 'perempuan')>Perempuan</option>
+                <option value="laki-laki" @selected(old('jenis_kelamin') == 'laki-laki')>Laki - Laki</option>
+            </select>
+
             <p class="text-muted small mt-2">🔒 Password default adalah sama dengan No HP</p>
 
             <button type="submit">Tambah</button>

@@ -12,7 +12,7 @@ class User extends Authenticatable
     use Notifiable;
 
     // Kolom yang dapat diisi
-    protected $fillable = ['username', 'password', 'nama_lengkap', 'role', 'shift', 'no_hp'];
+    protected $fillable = ['username', 'password', 'nama_lengkap', 'role', 'shift', 'no_hp', 'jenis_kelamin'];
 
 
     // Mutator untuk password
