@@ -5,10 +5,15 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+<<<<<<< HEAD
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\MonitoringController;
 use App\Http\Controllers\PesanController;
 use App\Http\Controllers\LaporanController;
+=======
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\PesanController;
+>>>>>>> b23218f9b63ae295fb0ca6d842805c2ae63b6d83
 use Illuminate\Support\Facades\Route;
 
 
@@ -31,6 +36,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::resource('user', UserController::class);
 
 Route::resource('pesan', PesanController::class);
+<<<<<<< HEAD
 
 Route::get('monitor', [MonitoringController::class, 'index'])->name('monitor.index');
 
@@ -38,3 +44,5 @@ Route::get('monitor/dm', [MonitoringController::class, 'dm'])->name('monitor.dm'
 Route::get('monitor/hadir', [MonitoringController::class, 'hadir'])->name('monitor.hadir');
 
 Route::resource('laporan', LaporanController::class);
+=======
+>>>>>>> b23218f9b63ae295fb0ca6d842805c2ae63b6d83

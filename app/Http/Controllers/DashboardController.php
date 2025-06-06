@@ -14,7 +14,10 @@ class DashboardController extends Controller
      */
     public function index()
     {
+<<<<<<< HEAD
         
+=======
+>>>>>>> b23218f9b63ae295fb0ca6d842805c2ae63b6d83
         $users = User::where('role', 'karyawan')->get();
         $jumlahKaryawan = User::where('role', 'karyawan')->count();
         $jumlahPesanan = Pesan::sum('porsi');

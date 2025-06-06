@@ -36,6 +36,7 @@ return [
     */
 
     'guards' => [
+<<<<<<< HEAD
     'web' => [
         'driver' => 'session',
         'provider' => 'users',
@@ -48,6 +49,14 @@ return [
     ],
 ],
 
+=======
+        'web' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
+    ],
+
+>>>>>>> b23218f9b63ae295fb0ca6d842805c2ae63b6d83
     /*
     |--------------------------------------------------------------------------
     | User Providers
@@ -69,7 +78,10 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\User::class),
+<<<<<<< HEAD
             'username' => 'username', 
+=======
+>>>>>>> b23218f9b63ae295fb0ca6d842805c2ae63b6d83
         ],
 
         // 'users' => [

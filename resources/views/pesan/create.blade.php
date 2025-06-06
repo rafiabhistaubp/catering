@@ -4,7 +4,11 @@
         <span class="close" id="closeModal">&times;</span>
         <h2>Menambahkan Data Pesanan</h2>
 
+<<<<<<< HEAD
         <form action="{{ route('pesan.store') }}" method="POST" enctype="multipart/form-data">
+=======
+        <form action="{{ route('pesan.store') }}" method="POST">
+>>>>>>> b23218f9b63ae295fb0ca6d842805c2ae63b6d83
             @csrf
 
             @if ($errors->any())
@@ -17,6 +21,7 @@
                 </div>
             @endif
 
+<<<<<<< HEAD
             <label for="deskripsi">Deskripsi </label>
             <input type="text" id="deskripsi" name="deskripsi" required placeholder="Deskripsi Pesanan" value="{{ old('deskripsi') }}">
 
@@ -25,13 +30,25 @@
 
             <label for="untuk_tanggal">Tanggal Pesanan</label>
             <input type="date" id="untuk_tanggal" name="untuk_tanggal" required value="{{ old('untuk_tanggal') }}">
+=======
+            <label for="deskripsi">Deskrip si </label>
+            <input type="text" id="deskripsi" name="deskripsi" required placeholder="Deskripsi Pesanan" value="{{ old('deskripsi') }}">
+
+            <label for="untuk_tanggal">Tanggal Pesanan</label>
+            <input type="date" id="untuk_tanggal" name="untuk_tanggal" required value="{{ old('untuk_tanggal') }}">
+            <label for="untuk_tanggal">Nama Makanan</label>
+            <input type="text" id="untuk_tanggal" name="untuk_tanggal" required placeholder="Nama Makanan"value="{{ old('untuk_tanggal') }}">
+>>>>>>> b23218f9b63ae295fb0ca6d842805c2ae63b6d83
 
             <label for="porsi">Jumlah Porsi</label>
             <input type="number" id="porsi" name="porsi" required placeholder="Jumlah Porsi" value="{{ old('porsi') }}">
 
+<<<<<<< HEAD
             <label for="foto">Foto</label>
             <input type="file" id="foto" name="foto" accept="image/*" required>
 
+=======
+>>>>>>> b23218f9b63ae295fb0ca6d842805c2ae63b6d83
             <label for="shift">Shift</label>
             <select id="shift" name="shift" required>
                 <option value="">Pilih Shift</option>

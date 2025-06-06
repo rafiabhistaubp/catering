@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+<!-- resources/views/partials/sidebar.blade.php -->
+>>>>>>> b23218f9b63ae295fb0ca6d842805c2ae63b6d83
 <div class="sidebar">
     <div class="logo">
         <span>Logo/Nama Perusahaan</span>
@@ -12,10 +16,17 @@
         <a href="{{ route('pesan.index') }}" class="menu-item {{ request()->routeIs('pesan.index') ? 'active' : '' }}">
             <i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Pesanan Makanan
         </a>
+<<<<<<< HEAD
         <a href="{{ route('monitor.index') }}" class="menu-item {{ request()->routeIs('monitor.index', 'monitor.dm', 'monitor.hadir') ? 'active' : '' }}">
             <i class="fa-solid fa-magnifying-glass-chart"></i> Monitoring Konsumsi
         </a>
         <a href="{{ route('laporan.index') }}" class="menu-item {{ request()->routeIs('laporan.index') ? 'active' : '' }}">
+=======
+        <a href="#" class="menu-item {{ request()->routeIs('consumption.monitoring') ? 'active' : '' }}">
+            <i class="fa-solid fa-magnifying-glass-chart"></i> Monitoring Konsumsi
+        </a>
+        <a href="#" class="menu-item {{ request()->routeIs('report') ? 'active' : '' }}">
+>>>>>>> b23218f9b63ae295fb0ca6d842805c2ae63b6d83
             <i class="fa-solid fa-file-export"></i> Laporan
         </a>
     </div>

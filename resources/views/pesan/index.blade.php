@@ -50,6 +50,7 @@
                     <td>{{ $pesan->porsi }}</td>
                     <td>{{ $pesan->shift }}</td>
                     <td>
+<<<<<<< HEAD
                         <a href="javascript:void(0);" class="btn btn-edit" 
                         data-pesan-id="{{ $pesan->id }}" 
                         data-deskripsi="{{ $pesan->deskripsi }}" 
@@ -58,6 +59,9 @@
                         data-porsi="{{ $pesan->porsi }}" 
                         data-shift="{{ $pesan->shift }}" 
                         data-foto="{{ $pesan->foto }}">Edit</a>
+=======
+                        <a href="{{ route('pesan.edit', $pesan->id) }}" class="btn btn-edit">Edit</a>
+>>>>>>> b23218f9b63ae295fb0ca6d842805c2ae63b6d83
                         <form action="{{ route('pesan.destroy', $pesan->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
@@ -75,7 +79,10 @@
 
     <!-- Modal -->
     @include('pesan.create')
+<<<<<<< HEAD
     @include('pesan.edit')
+=======
+>>>>>>> b23218f9b63ae295fb0ca6d842805c2ae63b6d83
 </div>
 @endsection
 
@@ -125,6 +132,7 @@
         return true; // Lanjutkan mengirim form jika ada input pencarian
     }
 </script>
+<<<<<<< HEAD
 <script>
     window.addEventListener("DOMContentLoaded", () => {
     const modalEdit = document.getElementById("modalEdit");
@@ -171,4 +179,6 @@
 });
 
 </script>
+=======
+>>>>>>> b23218f9b63ae295fb0ca6d842805c2ae63b6d83
 @endpush

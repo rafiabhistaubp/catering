@@ -4,6 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Pesan;
 use Illuminate\Http\Request;
+<<<<<<< HEAD
+=======
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+>>>>>>> b23218f9b63ae295fb0ca6d842805c2ae63b6d83
 
 class PesanController extends Controller
 {
@@ -32,6 +38,10 @@ class PesanController extends Controller
         return view('pesan.index', compact('pesans'));
     }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> b23218f9b63ae295fb0ca6d842805c2ae63b6d83
     /**
      * Show the form for creating a new resource.
      */
@@ -48,6 +58,7 @@ class PesanController extends Controller
         // Validasi input (optional but recommended)
         $validatedData = $request->validate([
             'deskripsi' => 'required|string|max:255',
+<<<<<<< HEAD
             'nama_makanan' => 'required|string|max:255',
             'untuk_tanggal' => 'required|date',
             'porsi' => 'required|integer',
@@ -107,21 +118,51 @@ class PesanController extends Controller
         return redirect()->route('pesan.index')->with('success', 'Pesanan berhasil ditambahkan.');
     }
 
+=======
+            'untuk_tanggal' => 'required|date',
+            'porsi' => 'required|integer',
+            'shift' => 'required|in:1,2,3',
+        ]);
+
+        // Create a new Pesan record
+        Pesan::create([
+            'deskripsi' => $validatedData['deskripsi'],  // Deskripsi pesanan
+            'untuk_tanggal' => $validatedData['untuk_tanggal'],  // Tanggal untuk pesanan
+            'porsi' => $validatedData['porsi'],  // Jumlah porsi
+            'shift' => $validatedData['shift'],  // Shift kerja
+        ]);
+
+        // Redirect to the index page with a success message
+        return redirect()->route('pesan.index')->with('success', 'Pesanan berhasil ditambahkan.');
+    }
+
+
+>>>>>>> b23218f9b63ae295fb0ca6d842805c2ae63b6d83
     /**
      * Display the specified resource.
      */
     public function show(Pesan $pesan)
     {
+<<<<<<< HEAD
         // Menampilkan detail pesanan
+=======
+        //
+>>>>>>> b23218f9b63ae295fb0ca6d842805c2ae63b6d83
     }
 
     /**
      * Show the form for editing the specified resource.
      */
+<<<<<<< HEAD
     public function edit($id)
     {
         $pesan = Pesan::findOrFail($id);
         return view('pesan.edit', compact('pesan'));
+=======
+    public function edit(Pesan $pesan)
+    {
+        //
+>>>>>>> b23218f9b63ae295fb0ca6d842805c2ae63b6d83
     }
 
     /**
@@ -129,6 +170,7 @@ class PesanController extends Controller
      */
     public function update(Request $request, Pesan $pesan)
     {
+<<<<<<< HEAD
         // Validasi input
         $validatedData = $request->validate([
             'deskripsi' => 'required|string|max:255',
@@ -204,5 +246,16 @@ class PesanController extends Controller
         $pesans->delete();
 
         return redirect()->route('pesan.index')->with('success', 'Pesanan berhasil dihapus.');
+=======
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Pesan $pesan)
+    {
+        //
+>>>>>>> b23218f9b63ae295fb0ca6d842805c2ae63b6d83
     }
 }

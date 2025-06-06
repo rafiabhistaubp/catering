@@ -6,12 +6,18 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
+<<<<<<< HEAD
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
     use HasApiTokens;
 
+=======
+
+class User extends Authenticatable
+{
+>>>>>>> b23218f9b63ae295fb0ca6d842805c2ae63b6d83
     use Notifiable;
 
     // Kolom yang dapat diisi
