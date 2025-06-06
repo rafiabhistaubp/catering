@@ -1,0 +1,151 @@
+/* Kolom Kiri (Tabel Data Karyawan) */
+.table-section {
+  flex: 3; /* Memberikan lebih banyak ruang untuk tabel data */
+  margin-right: 20px; /* Menambah jarak antara kolom kiri dan kanan */
+  margin-top: 30px; /* Menambah jarak antara tabel dan cards agar tidak tertimpa */
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Menambahkan jarak antar elemen di dalam table-section */
+}
+
+/* Kolom Kanan (Shift Info) */
+.shift-info-container {
+  flex: 2; /* Memberikan lebih banyak ruang pada kolom kanan */
+  padding-top: 20px;
+  max-width: 450px; /* Meningkatkan lebar Shift Info agar lebih lebar */
+  margin-left: 0; /* Menghapus margin kiri */
+  margin-top: 20px; /* Menambah jarak antar shift-info */
+}
+
+/* Menata Shift Info */
+.shift-info {
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.shift-info h3 {
+  font-size: 16px;
+  font-weight: bold;
+  color: #4caf50;
+  margin-bottom: 10px;
+}
+
+.shift-persons p {
+  margin: 5px 0;
+}
+
+.shift-time {
+  font-size: 14px;
+  color: #777;
+}
+
+button {
+  background-color: #4caf50;
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* Kartu */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Menyusun kartu dalam tiga kolom */
+  gap: 20px;
+  margin-bottom: 20px; /* Menambah jarak antara kartu dan konten lainnya */
+  margin-top: 20px; /* Menambah jarak antara cards dan tabel */
+  padding: 20px; /* Memberikan jarak sekitar card */
+  flex: 1; /* Membuat kartu lebih fleksibel */
+}
+
+.card {
+  background-color: #4caf50;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 18px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  min-width: 200px; /* Memberikan lebar minimum agar card tidak terlalu kecil */
+}
+
+.card span {
+  font-size: 2.5rem;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* Tabel Data Karyawan */
+table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  margin-top: 40px; /* Menambah jarak antar tabel dan konten lainnya */
+}
+
+th, td {
+  padding: 15px;
+  text-align: left;
+  word-wrap: break-word;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+th {
+  background-color: #f4f4f4;
+}
+
+/* Kolom Pencarian */
+.search {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+ 
+}
+
+/* Menambahkan margin-top pada h2 untuk menghindari tumpang tindih dengan cards */
+section h2 {
+  margin-top: 40px; /* Menambah jarak atas antara judul All dan elemen lainnya */
+}
+
+/* Tampilan Responsif */
+@media (max-width: 768px) {
+  .shift-info-container {
+    width: 100%; /* Shift Info menjadi full width pada layar kecil */
+  }
+
+  .shift-info {
+    padding: 15px;
+  }
+
+  .shift-info h3 {
+    font-size: 14px;
+  }
+
+  .shift-persons p {
+    font-size: 12px;
+  }
+
+  /* Menyesuaikan card pada layar kecil */
+  .cards {
+    grid-template-columns: 1fr; /* Kartu menjadi satu kolom pada layar kecil */
+  }
+
+  .card {
+    min-width: 0; /* Menghapus batas lebar kartu */
+  }
+
+  button {
+    padding: 8px 12px;
+  }
+}

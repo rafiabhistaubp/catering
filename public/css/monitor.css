@@ -1,0 +1,56 @@
+body {
+  margin-left: 100px;
+  padding-top: 20px;
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 30px; /* Menambahkan jarak antar card */
+  margin: 20px;
+  padding: 20px;
+  text-align: center;
+  flex-wrap: wrap; /* Pastikan card dan teks bisa berpindah baris jika ruang tidak cukup */
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Memastikan card dan teks terpusat */
+  text-align: center; /* Memastikan teks berada di tengah */
+}
+
+.card-link {
+  text-decoration: none; /* Menghilangkan garis bawah di link */
+}
+
+.card {
+  background-color: #B4CD93;
+  color: #388e3c;
+  padding: 20px;
+  border-radius: 15px;
+  font-size: 18px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  min-width: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  background-color: #a5d6a7;
+  transform: scale(1.05);
+}
+
+.card i {
+  font-size: 3rem;
+}
+
+.card-text {
+  font-size: 16px;
+  color: #2A4D2F;
+  margin-top: 10px; /* Memberikan jarak antara card dan teks */
+  text-align: center;
+}
