@@ -18,11 +18,7 @@ class UserController extends Controller
         $search = trim($search);  // Menghapus spasi di awal dan akhir
 
         // Mulai query dengan filter role karyawan
-<<<<<<< HEAD
         $query = User::query();
-=======
-        $query = User::where('role', 'karyawan');
->>>>>>> b23218f9b63ae295fb0ca6d842805c2ae63b6d83
 
         // Hanya lakukan pencarian jika ada input yang valid
         if (!empty($search)) {
@@ -33,18 +29,11 @@ class UserController extends Controller
         }
 
         // Ambil data dengan paginasi
-<<<<<<< HEAD
         $users = $query->paginate(10);  // Gunakan paginate setelah query, bukan all()
 
         return view('user.index', compact('users'));
     }
 
-=======
-        $users = $query->paginate(10);
-
-        return view('user.index', compact('users'));
-    }
->>>>>>> b23218f9b63ae295fb0ca6d842805c2ae63b6d83
     // Menampilkan form untuk membuat pengguna baru
     public function create()
     {
@@ -85,45 +74,28 @@ class UserController extends Controller
 
 
     // Menampilkan form untuk mengedit pengguna
-<<<<<<< HEAD
     public function edit( $id )
     {
        $user = User::findOrFail($id);
     return response()->json($user);
-=======
-    public function edit($id)
-    {
-        $user = User::findOrFail($id);
-        return view('user.edit', compact('user'));
->>>>>>> b23218f9b63ae295fb0ca6d842805c2ae63b6d83
     }
 
     // Memperbarui data pengguna
     public function update(Request $request, $id)
     {
-<<<<<<< HEAD
         // Ambil data pengguna
         $user = User::findOrFail($id);
 
         // Validasi input
-=======
-        $user = User::findOrFail($id);
-
->>>>>>> b23218f9b63ae295fb0ca6d842805c2ae63b6d83
         $validatedData = $request->validate([
             'nama_lengkap' => 'required|string|max:255',
             'shift' => 'required|in:1,2,3',
             'username' => 'required|email|max:255',
-<<<<<<< HEAD
             'password' => 'nullable|string|min:8|confirmed', // Validasi password
-=======
-            'no_hp' => 'required|numeric|min:8|max:15',
->>>>>>> b23218f9b63ae295fb0ca6d842805c2ae63b6d83
             'role' => 'required|in:admin,karyawan,koki',
             'jenis_kelamin' => 'required|in:perempuan,laki-laki',
         ]);
 
-<<<<<<< HEAD
         // Update data pengguna tanpa password terlebih dahulu
         $user->update($validatedData);
 
@@ -142,19 +114,6 @@ class UserController extends Controller
         return redirect()->route('user.index')->with('success', 'Data karyawan berhasil diperbarui.');
     }
 
-=======
-        $user->update($validatedData);
-
-        // Jika request dilakukan dengan AJAX, kembalikan response JSON
-        if ($request->ajax()) {
-            return response()->json(['success' => true]);
-        }
-
-        return redirect()->route('user.index')->with('success', 'Data karyawan berhasil diperbarui.');
-    }
-
-
->>>>>>> b23218f9b63ae295fb0ca6d842805c2ae63b6d83
     // Menghapus pengguna
     public function destroy($id)
     {

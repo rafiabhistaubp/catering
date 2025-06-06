@@ -23,14 +23,10 @@
             </form>
 
             <!-- Tombol buka modal -->
-<<<<<<< HEAD
             <!-- Tombol Create -->
         <!-- Tombol Create -->
         <!-- Tombol Create -->
         <a href="javascript:void(0);" id="openModal" class="btn-add">+</a>
-=======
-            <a href="javascript:void(0);" id="openModal" class="btn-add">+</a>
->>>>>>> b23218f9b63ae295fb0ca6d842805c2ae63b6d83
         </div>
 
         @if (session('success'))
@@ -58,7 +54,6 @@
                     <td>{{ $user->role}}</td>
                     <td>{{ $user->jenis_kelamin}}</td>
                     <td>
-<<<<<<< HEAD
                         <a href="javascript:void(0);" class="btn btn-edit" 
                             data-user-id="{{ $user->id }}" 
                             data-nama="{{ $user->nama_lengkap }}" 
@@ -67,9 +62,6 @@
                             data-role="{{ $user->role }}" 
                             data-jenis-kelamin="{{ $user->jenis_kelamin }}">Edit</a>
 
-=======
-                        <a href="{{ route('user.edit', $user->id) }}" class="btn btn-edit">Edit</a>
->>>>>>> b23218f9b63ae295fb0ca6d842805c2ae63b6d83
                         <form action="{{ route('user.destroy', $user->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
@@ -87,20 +79,13 @@
 
     <!-- Modal -->
     @include('user.create')
-<<<<<<< HEAD
     @include('user.edit')
-=======
->>>>>>> b23218f9b63ae295fb0ca6d842805c2ae63b6d83
 </div>
 @endsection
 
 @push('scripts')
 <script>
-<<<<<<< HEAD
    window.addEventListener("DOMContentLoaded", () => {
-=======
-    window.addEventListener("DOMContentLoaded", () => {
->>>>>>> b23218f9b63ae295fb0ca6d842805c2ae63b6d83
         const modal = document.getElementById("modal");
         const openModalButton = document.getElementById("openModal");
         const closeModalButton = document.getElementById("closeModal");
@@ -144,7 +129,6 @@
         return true; // Lanjutkan mengirim form jika ada input pencarian
     }
 </script>
-<<<<<<< HEAD
 <script>
     window.addEventListener("DOMContentLoaded", () => {
     const modalEdit = document.getElementById("modalEdit");
@@ -190,6 +174,4 @@
 });
 
 </script>
-=======
->>>>>>> b23218f9b63ae295fb0ca6d842805c2ae63b6d83
 @endpush
