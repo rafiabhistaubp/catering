@@ -25,10 +25,6 @@
             <a href="javascript:void(0);" id="openModal" class="btn-add">+</a>
         </div>
 
-        @if (session('success'))
-            <div class="alert alert-success mt-2">{{ session('success') }}</div>
-        @endif
-
         <!-- Tabel Data Pesanan -->
         <table>
             <thead>
@@ -80,95 +76,112 @@
 @endsection
 
 @push('scripts')
-<script>
-    window.addEventListener("DOMContentLoaded", () => {
-        const modal = document.getElementById("modal");
-        const openModalButton = document.getElementById("openModal");
-        const closeModalButton = document.getElementById("closeModal");
+    <!-- Sertakan SweetAlert2 CDN sekali di sini -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <!-- Menampilkan SweetAlert2 jika session 'success' tersedia -->
+    @if(session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: "{{ session('success') }}", // Menampilkan pesan dari session
+                showConfirmButton: false,
+                timer: 3000  // Notifikasi hilang setelah 3 detik
+            });
+        </script>
+    @endif
 
-        // ✅ Buka modal jika ada ?openModal=1
-        const params = new URLSearchParams(window.location.search);
-        if (params.get("openModal") === "1" && modal) {
-            modal.style.display = "flex";
+    <!-- JavaScript lainnya -->
+    <script>
+        window.addEventListener("DOMContentLoaded", () => {
+            const modal = document.getElementById("modal");
+            const openModalButton = document.getElementById("openModal");
+            const closeModalButton = document.getElementById("closeModal");
 
-            // 🔥 Hapus param setelah modal terbuka (biar ga muncul pas refresh)
-            setTimeout(() => {
-                window.history.replaceState({}, document.title, window.location.pathname);
-            }, 200);
-        }
+            // ✅ Buka modal jika ada ?openModal=1
+            const params = new URLSearchParams(window.location.search);
+            if (params.get("openModal") === "1" && modal) {
+                modal.style.display = "flex";
 
-        // Klik tombol +
-        openModalButton?.addEventListener("click", () => {
-            modal.style.display = "flex";
-        });
-
-        // Klik tombol x
-        closeModalButton?.addEventListener("click", () => {
-            modal.style.display = "none";
-        });
-
-        // Klik luar modal
-        window.addEventListener("click", (e) => {
-            if (e.target === modal) {
-                modal.style.display = "none";
+                // 🔥 Hapus param setelah modal terbuka (biar ga muncul pas refresh)
+                setTimeout(() => {
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                }, 200);
             }
+
+            // Klik tombol +
+            openModalButton?.addEventListener("click", () => {
+                modal.style.display = "flex";
+            });
+
+            // Klik tombol x
+            closeModalButton?.addEventListener("click", () => {
+                modal.style.display = "none";
+            });
+
+            // Klik luar modal
+            window.addEventListener("click", (e) => {
+                if (e.target === modal) {
+                    modal.style.display = "none";
+                }
+            });
         });
-    });
 
-    function validateSearch() {
-        const searchValue = document.querySelector('input[name="search"]').value.trim();
-        if (searchValue === '') {
-            // Jika search kosong, mencegah pengiriman form dan redirect ke URL tanpa query string
-            window.location.href = "{{ route('pesan.index') }}"; // Mengarahkan ke halaman tanpa query string
-            return false;
+        function validateSearch() {
+            const searchValue = document.querySelector('input[name="search"]').value.trim();
+            if (searchValue === '') {
+                // Jika search kosong, mencegah pengiriman form dan redirect ke URL tanpa query string
+                window.location.href = "{{ route('pesan.index') }}"; // Mengarahkan ke halaman tanpa query string
+                return false;
+            }
+            return true; // Lanjutkan mengirim form jika ada input pencarian
         }
-        return true; // Lanjutkan mengirim form jika ada input pencarian
-    }
-</script>
-<script>
-    window.addEventListener("DOMContentLoaded", () => {
-    const modalEdit = document.getElementById("modalEdit");
-    const openModalButton = document.querySelectorAll(".btn-edit"); // Tombol Edit
-    const closeModalButton = document.getElementById("closeEditModal"); // Tombol penutupan modal
+    </script>
 
-    // Klik tombol Edit untuk membuka modal
-    openModalButton.forEach(button => {
-        button.addEventListener("click", (e) => {
-            const pesanId = e.target.dataset.pesanId;  // Ambil ID pesanan dari data- attribute
-            const deskripsi = e.target.dataset.deskripsi;
-            const namaMakanan = e.target.dataset.namaMakanan;
-            const tanggalPesanan = e.target.dataset.tanggalPesanan;
-            const porsi = e.target.dataset.porsi;
-            const foto = e.target.dataset.foto;  // Ambil foto jika ada
-            const shift = e.target.dataset.shift;
+    <script>
+        window.addEventListener("DOMContentLoaded", () => {
+            const modalEdit = document.getElementById("modalEdit");
+            const openModalButton = document.querySelectorAll(".btn-edit"); // Tombol Edit
+            const closeModalButton = document.getElementById("closeEditModal"); // Tombol penutupan modal
 
-            // Isi data ke dalam modal
-            document.getElementById("editDeskripsi").value = deskripsi;
-            document.getElementById("editNama_makanan").value = namaMakanan;
-            document.getElementById("editUntuk_tanggal").value = tanggalPesanan;
-            document.getElementById("editPorsi").value = porsi;
-            document.getElementById("editShift").value = shift;
+            // Klik tombol Edit untuk membuka modal
+            openModalButton.forEach(button => {
+                button.addEventListener("click", (e) => {
+                    const pesanId = e.target.dataset.pesanId;  // Ambil ID pesanan dari data- attribute
+                    const deskripsi = e.target.dataset.deskripsi;
+                    const namaMakanan = e.target.dataset.namaMakanan;
+                    const tanggalPesanan = e.target.dataset.tanggalPesanan;
+                    const porsi = e.target.dataset.porsi;
+                    const foto = e.target.dataset.foto;  // Ambil foto jika ada
+                    const shift = e.target.dataset.shift;
 
-            // Menampilkan modal
-            modalEdit.style.display = "block";
-            
-            // Ubah action form dengan ID pesanan yang sesuai
-            document.getElementById("editForm").action = `/pesan/${pesanId}`;  // Sesuaikan dengan URL update
+                    // Isi data ke dalam modal
+                    document.getElementById("editDeskripsi").value = deskripsi;
+                    document.getElementById("editNama_makanan").value = namaMakanan;
+                    document.getElementById("editUntuk_tanggal").value = tanggalPesanan;
+                    document.getElementById("editPorsi").value = porsi;
+                    document.getElementById("editShift").value = shift;
+
+                    // Menampilkan modal
+                    modalEdit.style.display = "block";
+                    
+                    // Ubah action form dengan ID pesanan yang sesuai
+                    document.getElementById("editForm").action = `/pesan/${pesanId}`;  // Sesuaikan dengan URL update
+                });
+            });
+
+            // Klik tombol X untuk menutup modal
+            closeModalButton?.addEventListener("click", () => {
+                modalEdit.style.display = "none";
+            });
+
+            // Klik luar modal untuk menutup modal
+            window.addEventListener("click", (e) => {
+                if (e.target === modalEdit) {
+                    modalEdit.style.display = "none";
+                }
+            });
         });
-    });
-
-    // Klik tombol X untuk menutup modal
-    closeModalButton?.addEventListener("click", () => {
-        modalEdit.style.display = "none";
-    });
-
-    // Klik luar modal untuk menutup modal
-    window.addEventListener("click", (e) => {
-        if (e.target === modalEdit) {
-            modalEdit.style.display = "none";
-        }
-    });
-});
-
-</script>
+    </script>
 @endpush

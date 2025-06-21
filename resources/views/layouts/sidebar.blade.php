@@ -23,7 +23,10 @@
         <a href="#" class="menu-item settings">
             <i class="fa fa-cog" aria-hidden="true"></i> Settings
         </a>
-        <a href="{{ route('logout') }}" class="menu-item logout">
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
+        <a href="{{ route('logout') }}" class="menu-item logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
         </a>
     </div>

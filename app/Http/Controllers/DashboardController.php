@@ -6,6 +6,7 @@ use App\Models\Dashboard;
 use App\Models\Pesan;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
@@ -17,7 +18,7 @@ class DashboardController extends Controller
         
         $users = User::where('role', 'karyawan')->get();
         $jumlahKaryawan = User::where('role', 'karyawan')->count();
-        $jumlahPesanan = Pesan::sum('porsi');
+        $jumlahPesanan = Pesan::whereDate('tanggal_pesanan', Carbon::today())->sum('porsi');
         return view('dashboard.index', compact('users', 'jumlahKaryawan', 'jumlahPesanan'));
     }
 

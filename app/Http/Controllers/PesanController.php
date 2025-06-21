@@ -193,7 +193,7 @@ class PesanController extends Controller
         ]);
 
         // Redirect ke halaman index dengan pesan sukses
-        return redirect()->route('pesan.index')->with('success', 'Pesanan berhasil diperbarui.');
+        return redirect()->route('pesan.index')->with('success', 'Pesanan berhasil Diupdate');
     }
     /**
      * Remove the specified resource from storage.

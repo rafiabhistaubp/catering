@@ -184,6 +184,47 @@ form button {
 form button:hover {
     background-color: #45a049;
 }
+.notification-container {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 300px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.notification-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.icon {
+  font-size: 30px;
+  color: green;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
 
 
 /* Tampilan Responsif */

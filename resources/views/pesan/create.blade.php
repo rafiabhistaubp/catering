@@ -42,5 +42,18 @@
 
             <button type="submit">Tambah</button>
         </form>
+
+        <!-- Notifikasi -->
+        @if (session('success'))
+            <div id="notification" class="notification-container">
+                <div class="notification-content">
+                    <!-- Hidden input to store the success message -->
+                    <input type="hidden" id="session-success" value="{{ session('success') }}">
+                    <span class="icon">&#10004;</span>
+                    <p>Pesanan Telah Berhasil Dikirim Ke Koki</p>
+                    <button id="closeButton" class="close-btn">Konfirmasi</button>
+                </div>
+            </div>
+        @endif
     </div>
 </div>

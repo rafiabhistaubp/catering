@@ -29,10 +29,7 @@
         <a href="javascript:void(0);" id="openModal" class="btn-add">+</a>
         </div>
 
-        @if (session('success'))
-            <div class="alert alert-success mt-2">{{ session('success') }}</div>
-        @endif
-
+        
         <!-- Tabel Data Karyawan -->
         <table>
             <thead>
@@ -84,6 +81,18 @@
 @endsection
 
 @push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if(session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: "{{ session('success') }}", // Menampilkan pesan dari session
+                showConfirmButton: false,
+                timer: 3000  // Notifikasi hilang setelah 3 detik
+            });
+        </script>
+    @endif
 <script>
    window.addEventListener("DOMContentLoaded", () => {
         const modal = document.getElementById("modal");
